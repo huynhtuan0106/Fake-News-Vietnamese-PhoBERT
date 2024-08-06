@@ -1,19 +1,25 @@
 import pandas as pd
 import sys
 
-# Đường dẫn tới file Excel gốc
-excel_file_path = 'tonghop.xlsx'
+# Đường dẫn tới file CSV gốc
+csv_file_path = 'demofake.csv'
 
-# Đường dẫn tới file CSV mới sẽ lưu
-csv_file_path = 'tonghop.csv'
+# Đường dẫn tới file Excel mới sẽ lưu
+excel_file_path = 'GBHK.xlsx'
 
-# Đọc file Excel
-df = pd.read_excel(excel_file_path)
+# Thử các encoding khác
+try:
+    df = pd.read_csv(csv_file_path, encoding='utf-16')
+except UnicodeDecodeError:
+    try:
+        df = pd.read_csv(csv_file_path, encoding='cp1252')
+    except UnicodeDecodeError:
+        df = pd.read_csv(csv_file_path, encoding='cp1252')
 
-# Lưu lại file CSV
-df.to_csv(csv_file_path, index=False, encoding='utf-8')
+# Lưu lại file Excel
+df.to_excel(excel_file_path, index=False, engine='openpyxl')
 
 # Thiết lập stdout để sử dụng encoding utf-8
 sys.stdout.reconfigure(encoding='utf-8')
 
-print(f"File đã được chuyển đổi và lưu lại với định dạng CSV tại: {csv_file_path}")
+print(f"File đã được chuyển đổi và lưu lại với định dạng Excel tại: {excel_file_path}")
