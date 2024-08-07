@@ -98,17 +98,17 @@ def crawl_comment(link):
     time.sleep(5)
 
     # Like
-    like_count = WebDriverWait(browser, 7).until(
-        EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[1]/div/div[1]/div/div[1]/div/span/div/span[2]/span/span'))
-    )
-    browser.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center'});", like_count)
+    #like_count = WebDriverWait(browser, 7).until(
+    #    EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[1]/div/div[1]/div/div[1]/div/span/div/span[2]/span/span'))
+    #)
+    #browser.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center'});", like_count)
 
     # Sử dụng biểu thức chính quy để tìm số
-    match = re.search(r'\d+', like_count.text)
+    #match = re.search(r'\d+', like_count.text)
 
     # Nếu tìm thấy số, in số đó
-    if match:
-        number = match.group()
+    #if match:
+    #    number = match.group()
         #print("Lượt like: ", number) 
 
     # Click vào bình luận
@@ -132,20 +132,20 @@ def crawl_comment(link):
         pass
 
     # Share
-    try:    
-        share = WebDriverWait(browser, 4).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[1]/div/div[1]/div/div[2]/div[3]/span/div/div/div[1]/span'))
-        )
+    #try:    
+    #    share = WebDriverWait(browser, 4).until(
+    #        EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[1]/div/div[1]/div/div[2]/div[3]/span/div/div/div[1]/span'))
+    #    )
 
         #print("Lượt chia sẻ: ", share.text)
 
-        share_count = share.text
-    except: 
-        share_count = 0
+    #    share_count = share.text
+    #except: 
+        #share_count = 0
 
 
     # Cuộn trang để hiển thị bình luận
-    scroll_page(browser,5)
+    scroll_page(browser,10)
 
     # Lấy các bình luận
     div_cmt = browser.find_elements(By.XPATH,'//div[contains(@aria-label, "Bình luận")]')
@@ -228,7 +228,7 @@ def crawl_comment(link):
         current_url = "None"
 
     # Đường dẫn tới file Excel gốc
-    excel_file_path = 'ketqua.xlsx'
+    excel_file_path = 'Draft/tonight.xlsx'
 
     # Đọc file Excel
     df = pd.read_excel(excel_file_path)
@@ -239,15 +239,16 @@ def crawl_comment(link):
     new_data = {
         'content': content_ne,
         'author_id': current_url,
-        'like': number,
-        'shares_count': share_count,
-        'comments_count': len(div_cmt),
+        #'like': number,
+        #'shares_count': share_count,
+        #'comments_count': len(div_cmt),
         'comment_list': comments_str,
         'link': link,
         'date' : ngaydang,
         'label': 1,
         # Thêm các cột khác nếu có
     }
+
 
     # Chuyển dữ liệu mới thành DataFrame
     new_row = pd.DataFrame([new_data])
@@ -262,7 +263,7 @@ def crawl_comment(link):
 
 
 # Đường dẫn tới file Excel của bạn
-file_path = 'url.xlsx'
+file_path = 'Draft/url.xlsx'
 
 # Đọc file Excel
 df = pd.read_excel(file_path)
