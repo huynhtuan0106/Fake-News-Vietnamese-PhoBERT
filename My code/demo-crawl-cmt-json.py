@@ -263,7 +263,7 @@ def crawl_comment(link):
 
 
 # Đường dẫn tới file Excel của bạn
-file_path = 'Draft/url.xlsx'
+file_path = 'Draft/url_fake.xlsx'
 
 # Đọc file Excel
 df = pd.read_excel(file_path)
