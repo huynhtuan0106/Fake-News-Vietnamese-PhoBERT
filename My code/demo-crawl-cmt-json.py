@@ -228,7 +228,7 @@ def crawl_comment(link):
         current_url = "None"
 
     # Đường dẫn tới file Excel gốc
-    excel_file_path = 'Draft/tonight.xlsx'
+    excel_file_path = 'Draft/ketqua.xlsx'
 
     # Đọc file Excel
     df = pd.read_excel(excel_file_path)
@@ -245,7 +245,7 @@ def crawl_comment(link):
         'comment_list': comments_str,
         'link': link,
         'date' : ngaydang,
-        'label': 1,
+        'label': 0,
         # Thêm các cột khác nếu có
     }
 
