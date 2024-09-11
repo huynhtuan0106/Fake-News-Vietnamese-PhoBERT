@@ -38,7 +38,7 @@ browser = webdriver.Chrome(service=service, options=chrome_options)
 browser.get("https://www.facebook.com")
 
 # Load cookie từ file
-cookies = pickle.load(open("My code/my_cookie.pkl", "rb"))
+cookies = pickle.load(open("Crawl code/my_cookie.pkl", "rb"))
 for cookie in cookies:
     browser.add_cookie(cookie)
 
@@ -228,7 +228,7 @@ def crawl_comment(link):
         current_url = "None"
 
     # Đường dẫn tới file Excel gốc
-    excel_file_path = 'Draft/ketqua.xlsx'
+    excel_file_path = 'Data/Draft/ketqua.xlsx'
 
     # Đọc file Excel
     df = pd.read_excel(excel_file_path)
@@ -263,7 +263,7 @@ def crawl_comment(link):
 
 
 # Đường dẫn tới file Excel của bạn
-file_path = 'Draft/url_fake.xlsx'
+file_path = 'Data/Draft/url.xlsx'
 
 # Đọc file Excel
 df = pd.read_excel(file_path)
