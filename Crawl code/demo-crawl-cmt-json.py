@@ -3,7 +3,6 @@ import pickle
 import sys
 import io
 import json
-import re
 import pandas as pd
 from datetime import datetime
 from selenium import webdriver
@@ -24,7 +23,6 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--disable-software-rasterizer")
-# Nếu bạn muốn xem giao diện của trình duyệt, hãy loại bỏ dòng sau
 # chrome_options.add_argument("--headless")
 
 # Khởi tạo dịch vụ với ChromeDriver
@@ -38,7 +36,7 @@ browser = webdriver.Chrome(service=service, options=chrome_options)
 browser.get("https://www.facebook.com")
 
 # Load cookie từ file
-cookies = pickle.load(open("Crawl code/my_cookie.pkl", "rb"))
+cookies = pickle.load(open("my_cookie.pkl", "rb"))
 for cookie in cookies:
     browser.add_cookie(cookie)
 
@@ -267,8 +265,6 @@ file_path = 'Data/Draft/url.xlsx'
 
 # Đọc file Excel
 df = pd.read_excel(file_path)
-
-# Giả sử các URL nằm trong cột đầu tiên, bạn có thể thay đổi tên cột tương ứng nếu cần
 urls = df.iloc[:, 0].tolist()
 
 # In ra các URL để kiểm tra
@@ -276,19 +272,5 @@ for url in urls:
     print(url)
     crawl_comment(url)
 
-#crawl_comment("https://www.facebook.com/vietnamnet.vn/posts/514422874302211?ref=embed_post")
-#crawl_comment("https://www.facebook.com/vietnamnet.vn/posts/513946274349871?ref=embed_post")
-#crawl_comment("https://www.facebook.com/vietnamnet.vn/posts/514325794311919?ref=embed_post")
-#crawl_comment("https://www.facebook.com/vietnamnet.vn/posts/514358750975290?ref=embed_post")
-#crawl_comment("https://www.facebook.com/vietnamnet.vn/posts/514399610971204?ref=embed_post")
 
 browser.quit()
-
-
-# Đọc nội dung JSON từ tệp và lưu vào CSV
-#with open("comment.json", "r", encoding='utf-8') as f:
-    #comments = json.load(f)
-
-# Sử dụng pandas để chuyển đổi JSON thành DataFrame và lưu vào CSV
-#df = pd.DataFrame(comments)
-#df.to_csv("comments.csv", index=False, encoding='utf-8-sig')
