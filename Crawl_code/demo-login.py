@@ -41,7 +41,7 @@ try:
     login_button.click()
 
     # Chờ một chút để đảm bảo việc đăng nhập hoàn tất
-    time.sleep(10)  # Đợi 10 giây
+    time.sleep(20)  # Đợi 10 giây
 
     pickle.dump(browser.get_cookies(), open("my_cookie.pkl","wb"))
 

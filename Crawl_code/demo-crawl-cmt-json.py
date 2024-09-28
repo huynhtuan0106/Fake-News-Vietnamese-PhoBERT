@@ -34,9 +34,10 @@ browser = webdriver.Chrome(service=service, options=chrome_options)
 
 # Điều hướng đến trang đăng nhập của Facebook
 browser.get("https://www.facebook.com")
+time.sleep(10)
 
 # Load cookie từ file
-cookies = pickle.load(open("my_cookie.pkl", "rb"))
+cookies = pickle.load(open("Crawl_code/my_cookie.pkl", "rb"))
 for cookie in cookies:
     browser.add_cookie(cookie)
 
@@ -111,7 +112,7 @@ def crawl_comment(link):
 
     # Click vào bình luận
     try:
-        show_button = browser.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[2]/div[2]/div')
+        show_button = browser.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[4]/div/div/div[2]/div[2]/div')
 
         # Cuộn đến phần tử để đảm bảo nó nằm trong khung nhìn của trang
         browser.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center'});", show_button)
@@ -121,7 +122,7 @@ def crawl_comment(link):
 
         # Click vào "Xem tất cả bình luận"
         all_button = WebDriverWait(browser, 4).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div/div/div/div[1]/div/div[3]/div[1]'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div/div/div/div[1]/div/div[3]/div[1]'))
         )
         time.sleep(2)
         all_button.click()
@@ -182,7 +183,7 @@ def crawl_comment(link):
     # Lấy content bài đăng
     try:
         content = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div[1]/div/div'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div/div/div/div[2]/div/div'))
         )
         #print (content.text)
         content_ne = content.text
@@ -192,7 +193,7 @@ def crawl_comment(link):
 
     try: 
         # Tìm đối tượng cần di chuyển chuột tới
-        element_to_hover_over = browser.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[2]/span/div/span[1]/span/a/span')
+        element_to_hover_over = browser.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[2]/span/div/span[1]/span/span/a/span/span/span[60]')
 
         # Tạo đối tượng ActionChains
         actions = ActionChains(browser)
@@ -205,7 +206,7 @@ def crawl_comment(link):
 
         # Lấy ngày đăng
         ngay = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/span'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[2]/span/div/span[1]/span/span'))
         )
         
         ngaydang = change_date(ngay.text)
@@ -216,7 +217,7 @@ def crawl_comment(link):
     try:
         # Lấy ID người đăng
         poster = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/h2/span[1]/a/strong/span'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/h2/span[1]/a/strong/span'))
         )
         poster.click()
         time.sleep(5)
