@@ -185,10 +185,15 @@ def crawl_comment(link):
         content = WebDriverWait(browser, 3).until(
             EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div/div/div/div[2]/div/div'))
         )
-        #print (content.text)
         content_ne = content.text
     except:
-        content_ne = "None"
+        try:
+            content = WebDriverWait(browser, 3).until(
+                EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div[1]/div/div/div/span'))
+            )
+            content_ne = content.text
+        except:
+            content_ne = "None"
 
 
     try: 
