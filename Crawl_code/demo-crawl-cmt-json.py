@@ -232,7 +232,7 @@ def crawl_comment(link):
         current_url = "None"
 
     # Đường dẫn tới file Excel gốc
-    excel_file_path = 'Data/Draft/ketqua.xlsx'
+    excel_file_path = 'Data/Draft/ketqua2.xlsx'
 
     # Đọc file Excel
     df = pd.read_excel(excel_file_path)
@@ -241,15 +241,15 @@ def crawl_comment(link):
 
     # Dữ liệu mới muốn thêm vào (dạng từ điển), bỏ trống một số cột
     new_data = {
-        'content': content_ne,
+        'date' : ngaydang,
         'author_id': current_url,
+        'content': content_ne,
+        'label': 0,
+        'link': link,
         #'like': number,
         #'shares_count': share_count,
         #'comments_count': len(div_cmt),
         'comment_list': comments_str,
-        'link': link,
-        'date' : ngaydang,
-        'label': 0,
         # Thêm các cột khác nếu có
     }
 
@@ -275,6 +275,7 @@ urls = df.iloc[:, 0].tolist()
 
 # In ra các URL để kiểm tra
 for url in urls:
+    
     print(url)
     crawl_comment(url)
 
