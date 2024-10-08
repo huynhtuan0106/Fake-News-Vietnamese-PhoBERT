@@ -2,10 +2,10 @@ import pandas as pd
 import sys
 
 # Đường dẫn tới file Excel gốc
-excel_file_path = 'Data/Processing/fake.xlsx'
+excel_file_path = 'Data/Processing/eval.xlsx'
 
 # Đường dẫn tới file CSV mới sẽ lưu
-csv_file_path = 'Data/Processing/fake.csv'
+csv_file_path = 'Data/Processing/eval.csv'
 
 # Đọc file Excel
 try:
