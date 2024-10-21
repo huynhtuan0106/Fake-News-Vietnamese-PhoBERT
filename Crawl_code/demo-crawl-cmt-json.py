@@ -232,7 +232,7 @@ def crawl_comment(link):
         current_url = "None"
 
     # Đường dẫn tới file Excel gốc
-    excel_file_path = 'Data/Draft/ketqua2.xlsx'
+    excel_file_path = 'Data/Draft/ketqua.xlsx'
 
     # Đọc file Excel
     df = pd.read_excel(excel_file_path)
@@ -267,7 +267,7 @@ def crawl_comment(link):
 
 
 # Đường dẫn tới file Excel của bạn
-file_path = 'Data/Draft/url.xlsx'
+file_path = 'Data/Draft/url_fake.xlsx'
 
 # Đọc file Excel
 df = pd.read_excel(file_path)
