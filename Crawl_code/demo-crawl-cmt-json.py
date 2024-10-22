@@ -222,7 +222,7 @@ def crawl_comment(link):
     try:
         # Lấy ID người đăng
         poster = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/h2/span[1]/a/strong/span'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/div/h2/span[1]/a/strong/span'))
         )
         poster.click()
         time.sleep(5)
