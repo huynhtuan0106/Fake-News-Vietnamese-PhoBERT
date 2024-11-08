@@ -43,7 +43,7 @@ try:
     # Chờ một chút để đảm bảo việc đăng nhập hoàn tất
     time.sleep(20)  # Đợi 10 giây
 
-    pickle.dump(browser.get_cookies(), open("my_cookie.pkl","wb"))
+    pickle.dump(browser.get_cookies(), open("my_cookie_2.pkl","wb"))
 
 finally:
     # Đóng trình duyệt sau khi hoàn thành

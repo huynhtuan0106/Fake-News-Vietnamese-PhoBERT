@@ -37,7 +37,7 @@ browser.get("https://www.facebook.com")
 time.sleep(10)
 
 # Load cookie từ file
-cookies = pickle.load(open("Crawl_code/my_cookie.pkl", "rb"))
+cookies = pickle.load(open("Crawl_code/my_cookie_2.pkl", "rb"))
 for cookie in cookies:
     browser.add_cookie(cookie)
 
@@ -183,13 +183,13 @@ def crawl_comment(link):
     # Lấy content bài đăng
     try:
         content = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div/div/div/div[2]/div/div'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[5]/div/div/div[2]/div/div/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div[1]/div/div/div/div/span'))
         )
         content_ne = content.text
     except:
         try:
             content = WebDriverWait(browser, 3).until(
-                EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div[1]/div/div/div/span'))
+                EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[5]/div/div/div[2]/div/div/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[3]/div/div/div/div/div[2]/div/div'))
             )
             content_ne = content.text
         except:
@@ -222,7 +222,7 @@ def crawl_comment(link):
     try:
         # Lấy ID người đăng
         poster = WebDriverWait(browser, 3).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/div/h2/span[1]/a/strong/span'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div[5]/div/div/div[2]/div/div/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/div/div/div/div/div[13]/div/div/div[2]/div/div[2]/div/div[1]/span/div/h3/span[1]/a/strong/span'))
         )
         poster.click()
         time.sleep(5)
