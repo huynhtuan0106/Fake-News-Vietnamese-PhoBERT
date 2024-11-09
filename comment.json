@@ -1,6 +1,11 @@
 [
     {
         "comment_id": "c1",
+        "author": "Phát Minh Trần Viết",
+        "content": "Con ruồi chỉ cần yolo em detect vẫn ra mà bác"
+    },
+    {
+        "comment_id": "c5",
         "author": "Vietnamnet.vn",
         "content": "Xem bài viết này trên Vietnamnet:"
     }
